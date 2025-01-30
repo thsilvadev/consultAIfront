@@ -1,8 +1,9 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { Upload, Send, User, ArrowLeft, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-interface FormData {
+interface userData {
   nome: string;
   email: string;
   idade: string;
@@ -12,7 +13,7 @@ interface FormData {
 }
 
 function ExamForm() {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<userData>({
     nome: '',
     email: '',
     idade: '',
@@ -60,12 +61,40 @@ function ExamForm() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (!arquivo) {
-      setError('Por favor, faça o upload de um arquivo PDF antes de enviar');
-      return;
+
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
     }
-    setResposta(`Dados recebidos com sucesso!\nNome: ${formData.nome}\nArquivo: ${arquivo.name}`);
-    setError('');
+
+  const reqBody = new FormData();
+
+  // Verifique se arquivo não é null antes de adicionar ao formData
+  if (arquivo) {
+    reqBody.append("file", arquivo); // Adiciona o arquivo
+  } else {
+    console.error("Arquivo não fornecido!");
+    return; // Sai da função caso não tenha um arquivo
+  }
+  reqBody.append(
+    "user_data",
+    JSON.stringify(formData
+       // Substitua pela variável correspondente
+)
+  );
+
+     axios.post("http://0.0.0.0:8000/document", reqBody, config).then(
+      (res) => {
+        if (res) {
+          console.log("what happening")
+          setResposta(`Dados recebidos com sucesso!\nNome: ${formData.nome}\nArquivo: ${arquivo?.name || 'Nenhum arquivo enviado'}`);
+        }
+      } 
+    ).catch((err) => {
+      console.log("erro brutal: ", err)
+    })
+    
   };
 
   return (
