@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import { Upload, Send, User, ArrowLeft, X } from "lucide-react";
+import { Upload, Send, User, ArrowLeft, X, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -25,6 +25,7 @@ function ExamForm() {
   const [resposta, setResposta] = useState<string>("");
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [error, setError] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -92,7 +93,7 @@ function ExamForm() {
         // Substitua pela variável correspondente
       )
     );
-
+    setIsLoading(true);
     axios
       .post("http://192.168.0.82:8000/document", reqBody, config)
       .then((res) => {
@@ -110,6 +111,9 @@ function ExamForm() {
       })
       .catch((err) => {
         console.log("erro brutal: ", err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -138,6 +142,14 @@ function ExamForm() {
         >
           {/* Seção 1: Dados Pessoais */}
           <div className="space-y-6">
+          {isLoading && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+          <div className="bg-white p-4 rounded-lg flex items-center gap-3">
+            <Loader2 className="w-6 h-6 animate-spin text-blue-600" />
+            <span className="text-gray-700">Processando...</span>
+          </div>
+        </div>
+      )}
             <h2 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
               <User className="w-5 h-5" />
               Dados Pessoais
