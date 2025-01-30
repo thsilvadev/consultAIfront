@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FileText, Brain, Users, Map, Menu, X } from 'lucide-react';
+import { FileText, Users, Map, Menu, X } from 'lucide-react';
 
 function HomePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -8,7 +8,7 @@ function HomePage() {
   return (
       <div className="min-h-screen flex flex-col">
         {/* Header */}
-        <header className="bg-blue-600 text-white">
+        <header className="bg-gradient-to-b from-[#6ECEC8] to-[#6ECEC8] text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex justify-between items-center">
               <div className="flex items-center">
@@ -100,7 +100,7 @@ function HomePage() {
         {/* Main Content */}
         <main className="flex-grow">
           {/* Hero Section */}
-          <section className="bg-gradient-to-b from-blue-600 to-blue-500 text-white py-16">
+          <section className="bg-gradient-to-b from-[#6ECEC8] to-[#6ECEC8] text-white py-16">
             <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
               <h2 className="text-6xl font-bold mb-6">ConsultAI</h2>
               <p className="text-xl mb-10 max-w-3xl mx-auto leading-relaxed">
