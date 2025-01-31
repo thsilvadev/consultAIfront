@@ -111,7 +111,7 @@ function HomePage() {
               <img
                   src="https://healthcare-mittelhessen.eu/wp-content/uploads/2019/05/Robotik-2.jpg"
                   alt="Robô médico com tecnologia avançada"
-                  className="rounded-xl shadow-2xl mx-auto mb-10 max-w-2xl object-cover h-[400px] w-full"
+                  className="rounded-xl shadow-2xl mx-auto mb-10 max-w-2xl object-cover h-[-550px] w-full"
               />
               <Link
                   to="/exame"

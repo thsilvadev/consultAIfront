@@ -3,6 +3,7 @@ import { Upload, Send, User, ArrowLeft, X, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+
 interface userData {
   nome: string;
   email: string;
@@ -13,6 +14,8 @@ interface userData {
 }
 
 function ExamForm() {
+  const apiUrl = import.meta.env.VITE_API_URL
+
   const [formData, setFormData] = useState<userData>({
     nome: "",
     email: "",
@@ -95,11 +98,11 @@ function ExamForm() {
     );
     setIsLoading(true);
     axios
-      .post("http://192.168.0.82:8000/document", reqBody, config)
+      .post(`${apiUrl}/document`, reqBody, config)
       .then((res) => {
         if (res) {
-          console.log("response received: ", res.data.output);
-          const jsonString = res.data.output.message.content
+          const jsonString = res.data.output
+          console.log("response received: ", jsonString);
           console.log(jsonString)
        
           setResposta(
