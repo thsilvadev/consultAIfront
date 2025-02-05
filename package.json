@@ -1,5 +1,5 @@
 {
-  "homepage": "https://thsilvadev.github.io/consultAIfront",
+  "homepage": "https://https://consult-ai-beta.vercel.app/",
   "name": "vite-react-typescript-starter",
   "private": true,
   "version": "0.0.0",
@@ -8,9 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "vite build && gh-pages -d dist"
+    "preview": "vite preview"
   },
   "dependencies": {
     "axios": "^1.7.9",
