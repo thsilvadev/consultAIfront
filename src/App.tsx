@@ -6,6 +6,7 @@ import ContactPage from './pages/ContactPage';
 import RoadmapPage from './pages/RoadmapPage';
 
 function App() {
+    console.log("app rendered.")
     return (
         <Router>
             <Routes>
