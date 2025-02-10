@@ -98,7 +98,10 @@ function ExamForm() {
     );
     setIsLoading(true);
     axios
-      .post(`${apiUrl}/document`, reqBody, config)
+      .post(`${apiUrl}/document`, reqBody, {
+        ...config,
+        withCredentials: true
+      })
       .then((res) => {
         if (res) {
           const jsonString = res.data.output
